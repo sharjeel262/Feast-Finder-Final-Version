@@ -11,7 +11,9 @@ import JsonPage from "../../components/json";
 import { RootStackParamList } from "../../types";
 import LoginScreen from "../../components/LoginScreen";
 import SignupScreen from "../../components/Signup";
-import { useAuth } from "../../components/useAuth"; // Assuming this hook returns user state
+import { useAuth } from "../../components/useAuth";
+import MapScreen from "../../components/MapScreen"; // Import the MapScreen component
+import NearbyRestaurantsScreen from "../../components/NearbyRestaurantsScreen"; // Import the NearbyRestaurantsScreen component
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -110,6 +112,26 @@ const TabOneScreen = () => {
           component={JsonPage}
           options={{
             title: "Restaurant's Data",
+            headerTitleAlign: "center",
+          }}
+        />
+
+        {/* Add the Map Screen */}
+        <Stack.Screen
+          name="MapScreen"
+          component={MapScreen}
+          options={{
+            title: "Map",
+            headerTitleAlign: "center",
+          }}
+        />
+
+        {/* Add the Nearby Restaurants Screen */}
+        <Stack.Screen
+          name="NearbyRestaurants"
+          component={NearbyRestaurantsScreen}
+          options={{
+            title: "Nearby Restaurants",
             headerTitleAlign: "center",
           }}
         />

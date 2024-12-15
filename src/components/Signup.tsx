@@ -33,7 +33,7 @@ const Signup = () => {
         title={loading ? 'Signing Up...' : 'Sign Up'}
         onPress={handleSignup}
         disabled={loading}
-        color="#ff8400" // Orange color for the button
+        color="#ff8400" 
       />
       <TouchableOpacity onPress={() => console.log('Navigate to Login screen')} style={styles.loginLink}>
         <Text style={styles.loginText}>Already have an account? Log in</Text>
@@ -47,22 +47,22 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: 'center',
     padding: 16,
-    backgroundColor: '#fff', // Keep background white
+    backgroundColor: '#fff', 
   },
   header: {
     fontSize: 24,
     fontWeight: 'bold',
     marginBottom: 20,
     textAlign: 'center',
-    color: '#ff8400', // Orange color for the header
+    color: '#ff8400', 
   },
   input: {
     height: 40,
-    borderColor: '#ff8400', // Orange border for input fields
+    borderColor: '#ff8400', 
     borderWidth: 1,
     marginBottom: 12,
     paddingLeft: 10,
-    borderRadius: 5, // Rounded corners
+    borderRadius: 5, 
   },
   error: {
     color: 'red',
@@ -74,7 +74,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   loginText: {
-    color: '#ff8400', // Orange text for the login link
+    color: '#ff8400',
     textDecorationLine: 'underline',
   },
 });

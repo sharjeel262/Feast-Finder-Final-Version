@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { StyleSheet, View, FlatList, Text, TouchableOpacity, TextInput } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import restaurantData from '../../assets/restaurants.json';
+import { Ionicons } from '@expo/vector-icons';
 
 type Restaurant = {
   name: string;
@@ -9,12 +10,15 @@ type Restaurant = {
   phone_number: string;
   website: string;
   city?: string;
+  latitude: number;
+  longitude: number;
 };
 
 const HomeScreen = () => {
   const [restaurants, setRestaurants] = useState<Restaurant[]>([]);
   const [filteredRestaurants, setFilteredRestaurants] = useState<Restaurant[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
+
   const navigation = useNavigation();
 
   useEffect(() => {
@@ -38,6 +42,10 @@ const HomeScreen = () => {
 
   const handleRestaurantPress = (restaurant: Restaurant) => {
     navigation.navigate('RestaurantDetail', { restaurant });
+  };
+
+  const handleMapPress = () => {
+    navigation.navigate('MapScreen'); // Navigate to map screen
   };
 
   const renderRestaurant = ({ item }: { item: Restaurant }) => (
@@ -68,13 +76,17 @@ const HomeScreen = () => {
         onChangeText={handleSearch}
       />
 
+      {/* Google Maps Icon */}
+      <TouchableOpacity style={styles.mapButton} onPress={handleMapPress}>
+        <Ionicons name="map-outline" size={32} color="#FF8400" />
+        <Text style={styles.mapText}>View Map</Text>
+      </TouchableOpacity>
+
       <FlatList
         data={filteredRestaurants}
         keyExtractor={(item, index) => index.toString()}
         renderItem={renderRestaurant}
-        ListEmptyComponent={
-          <Text style={styles.noResults}>No restaurants found.</Text>
-        }
+        ListEmptyComponent={<Text style={styles.noResults}>No restaurants found.</Text>}
       />
     </View>
   );
@@ -138,6 +150,20 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: '#7f8c8d',
     marginTop: 20,
+  },
+  mapButton: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginVertical: 16,
+    justifyContent: 'center',
+    padding: 10,
+    backgroundColor: '#FFE0B2',
+    borderRadius: 8,
+  },
+  mapText: {
+    marginLeft: 8,
+    fontSize: 16,
+    color: '#FF8400',
   },
 });
 
